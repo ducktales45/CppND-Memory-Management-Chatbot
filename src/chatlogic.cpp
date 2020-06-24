@@ -38,12 +38,7 @@ ChatLogic::~ChatLogic()
     //Task 3: We no longer need  to manuallay delete all of the nodes in the _nodes vector because
     // the memory is being managed by a unique_ptr
 
-    // delete all edges
-    for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
-    {
-        delete *it;
-    }
-
+    // Task 4: Deleted _edge member variable
     ////
     //// EOF STUDENT CODE
 }
@@ -158,18 +153,19 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             auto childNode = std::find_if(_nodes.begin(), _nodes.end(), [&childToken](std::unique_ptr<GraphNode> &node) { return node->GetID() == std::stoi(childToken->second); });
 
                             // create new edge
-                            GraphEdge *edge = new GraphEdge(id);
+                            // Task 4: update edge to smart pointer
+                            std::unique_ptr edge = std::make_unique<GraphEdge>(id);
                             //Task 3:
                             edge->SetChildNode(childNode->get());
-                            edge->SetParentNode(parentNode->get());
-                            _edges.push_back(edge);
+                            edge->SetParentNode(parentNode->get());                            
 
                             // find all keywords for current node
                             AddAllTokensToElement("KEYWORD", tokens, *edge);
 
                             // store reference in child node and parent node
-                            (*childNode)->AddEdgeToParentNode(edge);
-                            (*parentNode)->AddEdgeToChildNode(edge);
+                            // Task 4:
+                            (*childNode)->AddEdgeToParentNode(std::move(edge));
+                            (*parentNode)->AddEdgeToChildNode(std::move(edge));
                         }
 
                         ////
