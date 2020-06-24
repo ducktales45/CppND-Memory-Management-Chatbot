@@ -8,13 +8,8 @@ GraphNode::GraphNode(int id)
 
 GraphNode::~GraphNode()
 {
-    //// STUDENT CODE
-    ////
-
-    delete _chatBot; 
-
-    ////
-    //// EOF STUDENT CODE
+    // Task 0: Graph Node Does not own the instance of _chatBot and therefore
+    // should not delete it. This will fix crash.
 }
 
 void GraphNode::AddToken(std::string token)
