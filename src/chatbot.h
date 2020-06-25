@@ -58,7 +58,7 @@ public:
     // move constructor
     ChatBot (ChatBot &&source)
     {
-        _image = source._image;
+        _image = source._image;        
         _currentNode = source._currentNode;
         _rootNode = source._rootNode;
         _chatLogic = source._chatLogic;
@@ -87,7 +87,6 @@ public:
         source._currentNode = nullptr;
         source._rootNode = nullptr;
         source._chatLogic = nullptr;
-        std::cout << "Chatbot Move Assignment Operator" << std::endl;
     }
 
     // getters / setters
