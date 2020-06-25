@@ -109,6 +109,7 @@ ChatBot &ChatBot::operator=(ChatBot &&source)
     source._currentNode = nullptr;
     source._rootNode = nullptr;
     source._chatLogic = nullptr;
+  	std::cout << "Chatbot Move Assignment Operator" << std::endl;
 }
 
 ////
