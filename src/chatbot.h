@@ -28,66 +28,11 @@ public:
     ChatBot(std::string filename); // constructor WITH memory allocation
     ~ChatBot();
     // Task 2: Implement Rule of 5 for chatbot object.
-    // copy constructor
-    ChatBot (const ChatBot &source)
-    {        
-        _image = new wxBitmap(*source._image); 
-        
-        _currentNode = source._currentNode;
-        _rootNode = source._rootNode;        
-        _chatLogic = source._chatLogic;
-        std::cout << "Chatbot Copy Constructor" << std::endl;
-    }
-    // copy assignment operator override
-    ChatBot &operator=(const ChatBot &source)
-    {
-        if (this == &source)
-        {
-            return *this;
-        }
-        delete _image;
-        *_image = *source._image;
-
-        _currentNode = source._currentNode;
-        _rootNode = source._rootNode;
-        _chatLogic = source._chatLogic;
-        std::cout << "Chatbot Copy Assignment Operator" << std::endl;
     
-    }
-    
-    // move constructor
-    ChatBot (ChatBot &&source)
-    {
-        _image = source._image;        
-        _currentNode = source._currentNode;
-        _rootNode = source._rootNode;
-        _chatLogic = source._chatLogic;
-
-        source._image = NULL;
-        source._currentNode = nullptr;
-        source._rootNode = nullptr;
-        source._chatLogic = nullptr;
-        std::cout << "Chatbot Move Constructor" << std::endl;
-    }
-
-    // move assignment Operator overide
-    ChatBot &operator=(ChatBot &&source)
-    {
-        if(this == &source)
-        {
-            return *this;
-        }
-        delete _image;
-        _image = source._image;
-        _currentNode = source._currentNode;
-        _rootNode = source._rootNode;
-        _chatLogic = source._chatLogic;
-
-        source._image = NULL;
-        source._currentNode = nullptr;
-        source._rootNode = nullptr;
-        source._chatLogic = nullptr;
-    }
+    ChatBot (const ChatBot &source); // copy constructor
+    ChatBot &operator=(const ChatBot &source); // copy assignment operator override
+    ChatBot (ChatBot &&source); // move constructor
+    ChatBot &operator=(ChatBot &&source); // move assignment Operator overide
 
     // getters / setters
     void SetCurrentNode(GraphNode *node);
