@@ -20,8 +20,7 @@ private:
     std::vector<std::unique_ptr<GraphEdge>> _childEdges;  // edges to subsequent nodes
 
     // data handles (not owned)
-    // Task 4:
-    std::vector<std::unique_ptr<GraphEdge>> _parentEdges; // edges to preceding nodes 
+    std::vector<GraphEdge *> _parentEdges; // edges to preceding nodes 
     ChatBot *_chatBot;
 
     ////
@@ -44,9 +43,9 @@ public:
     int GetNumberOfParents() { return _parentEdges.size(); }
 
     // proprietary functions
-    void AddToken(std::string token); // add answers to list
+    void AddToken(std::string token); // add answers to list    
+    void AddEdgeToParentNode(GraphEdge *edge);
     // Task 4
-    void AddEdgeToParentNode(std::unique_ptr<GraphEdge> edge);
     void AddEdgeToChildNode(std::unique_ptr<GraphEdge> edge);
 
     //// STUDENT CODE
